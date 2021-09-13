@@ -1,23 +1,25 @@
-import logo from './logo.svg';
 import './App.css';
+import backgroundPokemon from './assets/background-pokemon.svg'
+import HeaderNav from './components/HeaderNav';
+import { Route, HashRouter } from "react-router-dom";
+import PokedexPage from "./components/PokedexPage";
+import PartyPage from "./components/PartyPage";
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="app">
+      
+      <HashRouter>
+        <HeaderNav/>
+
+        <Route path="/" exact component={PokedexPage}/>
+        <Route path="/pokedex" component={PokedexPage}/>
+        <Route path="/party" component={PartyPage}/>
+
+        <img className='background-image' src={backgroundPokemon} alt='background pokemon asset'/>
+      </HashRouter>
+      
     </div>
   );
 }
