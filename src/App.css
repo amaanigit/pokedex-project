@@ -1,3 +1,4 @@
+/* general styles for the app container */
 .app {
   position: relative;
   max-width: 1440px;
@@ -9,7 +10,23 @@
   position: absolute;
   z-index: -1;
   top: 0;
-  left: 0;
-  width: 660px;
+  left: auto;
+  right: 75px;
+  width: 450px;
   height: auto;
+}
+
+@media only screen and (min-width: 550px) {
+  .app .background-image {
+    left: 40px;
+    right: auto;
+    width: 550px;
+  }
+}
+
+/* on mobile breakpoint - 1024px and larger  */
+@media only screen and (min-width: 1024px) {
+  .app .background-image {
+    width: 660px;
+  }
 }

@@ -60,6 +60,64 @@ header .user-photo {
 
 header .user-photo img {
     width: 100%;
+} 
+
+header .nav-burger {
+    display: block;
+    cursor: pointer;
+    padding: 15px;
+    position: fixed;
+    z-index: 3;
+    top: 20px;
+    right: 40px;
+}
+
+header .nav-burger span {
+    display: block;
+    width: 30px;
+    height: 3px;
+    border-radius: 15px;
+    background-color: white;
+    transition: all 0.3s ease;
+}
+
+header .nav-burger .line-bottom {
+    margin-top: 5px;
+}
+
+header .mobile-menu-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #333333;
+    width: 100%;
+    height: 100vh;
+    padding: 10rem 3rem;
+    box-sizing: border-box;
+    display: none;
+}
+
+header .mobile-menu-content {
+    border: dashed;
+    height: 100%;
+    position: relative;
+    z-index: 2;
+}
+
+
+/* burger menu expanded */
+header.expanded .mobile-menu-wrapper {
+    display: block;
+}
+
+header.expanded .nav-burger .line-top {
+    transform: rotate(45deg);
+    margin-top: 0;
+}
+
+header.expanded .nav-burger .line-bottom {
+    transform: rotate(-45deg);
+    margin-top: -3px;
 }
 
 
@@ -67,5 +125,9 @@ header .user-photo img {
 @media only screen and (min-width: 1024px) {
     header .nav-content {
         display: flex;
+    }
+
+    header .nav-burger, header .mobile-menu-wrapper, header.expanded .mobile-menu-wrapper {
+        display: none;
     }
 }

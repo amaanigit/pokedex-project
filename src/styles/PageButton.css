@@ -1,0 +1,18 @@
+.page-button-wrapper {
+    
+    position: fixed;
+    bottom: 100px;
+    right: 40px;
+   
+}
+
+.page-button {
+    border-radius: 40px;
+    background-color: rgba(16, 123, 106, 0.6);
+    border: 1px solid #FFFFFF;
+    width: 75px;
+    height: 75px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}

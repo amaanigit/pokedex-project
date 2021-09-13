@@ -5,6 +5,7 @@ import { Route, HashRouter } from "react-router-dom";
 import PokedexPage from "./components/PokedexPage";
 import PartyPage from "./components/PartyPage";
 
+// add state for mobile menu, to add class to app
 
 function App() {
   return (
