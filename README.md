@@ -1,3 +1,6 @@
+# jm-pokedex
+The dev task for round 3 of the JM interview.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
