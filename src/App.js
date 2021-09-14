@@ -13,10 +13,12 @@ function App() {
       
       <HashRouter>
         <HeaderNav/>
-
+        
+        <div className="page-container">
         <Route path="/" exact component={PokedexPage}/>
         <Route path="/pokedex" component={PokedexPage}/>
         <Route path="/party" component={PartyPage}/>
+        </div>
 
         <img className='background-image' src={backgroundPokemon} alt='background pokemon asset'/>
       </HashRouter>

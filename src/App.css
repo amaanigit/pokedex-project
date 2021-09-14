@@ -16,7 +16,13 @@
   height: auto;
 }
 
-@media only screen and (min-width: 550px) {
+.app .page-container {
+  position: relative;
+  min-height: calc(100vh - 80px);
+  padding: 40px;
+}
+
+@media only screen and (min-width: 600px) {
   .app .background-image {
     left: 40px;
     right: auto;

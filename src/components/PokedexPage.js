@@ -1,12 +1,15 @@
 import React, { Component } from "react";
+import ItemsTotal from "./ItemsTotal";
 import PageButton from "./PageButton";
+import PageTitle from "./PageTitle";
  
 class PokedexPage extends Component {
   render() {
     return (
       <div>
-        <h2>This is the pokedex page</h2>
+        <PageTitle text="Choose your team"/>
         <PageButton link="/party" text="party"/>
+        <ItemsTotal currentItems="12" totalItems="151"/>
       </div>
     );
   }
