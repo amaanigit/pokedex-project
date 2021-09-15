@@ -1,0 +1,7 @@
+.card-grid {
+    border: dashed;
+    display: inline-flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    max-width: 650px;
+}
