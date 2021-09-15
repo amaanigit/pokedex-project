@@ -19,8 +19,8 @@ class Card extends Component {
                   <h3>title</h3>
 
                   <div className="types">
-                      <span class="type grass">Grass</span>
-                      <span class="type poison">Poison</span>
+                      <span className="type grass">Grass</span>
+                      <span className="type poison">Poison</span>
                   </div>
 
                   <p>added to party X times</p>

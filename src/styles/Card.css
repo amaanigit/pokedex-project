@@ -64,6 +64,8 @@
 .single-card-wrapper h3 {
     font-size: 30px;
     margin: 10px 0;
+    font-family: 'Lora', serif;
+    font-weight: 500;
 }
 
 .single-card-wrapper .types .type {
