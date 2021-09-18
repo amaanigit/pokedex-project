@@ -120,7 +120,7 @@ import HeaderNav from './components/HeaderNav';
 import PokemonApp from './components/PokemonApp';
 
 function App() {
-  const generation = '1/';
+  const GENERATION = 1; // change this to run the app with different generations (it will still work)
   const [genPokemon, setGenPokemon] = useState(null);
   const [error, setError] = useState(null);
 
@@ -130,7 +130,7 @@ function App() {
    */
   useEffect(() => {
     console.log('use effect ran');
-    const apiUrl = 'https://pokeapi.co/api/v2/generation/' + generation;
+    const apiUrl = 'https://pokeapi.co/api/v2/generation/' + GENERATION;
 
     fetch(apiUrl)
     .then(response => {
@@ -192,7 +192,7 @@ function App() {
           <HeaderNav/>
           { error && <div className='error-message'>{error}</div>}
 
-          { genPokemon && <PokemonApp genPokemonList={genPokemon} id={2} updateErrorMessage={(message) => updateErrorMessage(message)}/>}
+          { genPokemon && <PokemonApp genPokemonList={genPokemon} id={2} updateErrorMessage={updateErrorMessage}/>}
           
           <img className='background-image' src={backgroundPokemon} alt='background pokemon asset'/>
         </HashRouter>

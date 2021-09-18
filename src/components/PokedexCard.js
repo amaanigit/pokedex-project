@@ -20,9 +20,9 @@ function PokedexCard(props) {
         }
     }
 
-    useEffect(() => {
-        console.log('use effect ran');
-    }, [cardCount]);
+    // useEffect(() => {
+    //     console.log('use effect ran');
+    // }, [cardCount]);
 
     return (
         <div className="single-card-wrapper">

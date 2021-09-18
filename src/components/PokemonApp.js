@@ -12,6 +12,12 @@ import PartyPage from './PartyPage';
  */
 function PokemonApp(props) {
     const MAX_PARTY = 6;
+    const FIRST_POKEMON = props.genPokemonList[0].id;
+    const PAGE_INCREMENT = 12;
+
+
+    const [pageLoadMax, setPageLoadMax] = useState(FIRST_POKEMON + 12);
+    const [canLoadMore, setCanLoadMore] = useState(true);
 
     const [partyList, setPartyList] = useState([]);
     const [pokemon, setPokemon] = useState(null);
@@ -25,6 +31,8 @@ function PokemonApp(props) {
         {id: 7, name: 'squirtle', sprites: 'add sprite here', types: 'add types here'},
         {id: 8, name: 'wartortle', sprites: 'add sprite here', types: 'add types here'},
     ])
+
+    
   
     /**
      * A function to add or remove pokemon from the global party 
@@ -60,36 +68,35 @@ function PokemonApp(props) {
         }
     }
 
-  
-    // function FetchPokemon(id) {
-        // const url = 'https://pokeapi.co/api/v2/pokemon/' + props.id;
-        // // const pokemons = null;
-
-        // useEffect(() => {
-        //     console.log('pokemon use effect ran');
-        //     fetch(url)
-        //     .then(response => {
-        //     if(!response.ok) {
-        //         throw Error('could not fetch the data for that resource');
-        //     }
-        //     return response.json();
-        //     })
-        //     .then(data => {
-        //         console.log(data);
-        //         setPokemon(data);
-        //         props.updateErrorMessage(null);
-        //     })
-        //     .catch(error => {
-        //         console.log('error fetching api data: ', error.message);
-        //         props.updateErrorMessage(error.message);
-        //     });
-        // },[props, url]);
-    // }
-
-    
+    function loadPokemon() {
+        if(pageLoadMax + PAGE_INCREMENT <= FIRST_POKEMON + props.genPokemonList.length) { // if it can be incremented by 12
+            setPageLoadMax(pageLoadMax + PAGE_INCREMENT);
+        } else {
+            setPageLoadMax(props.genPokemonList.length + 1);
+            setCanLoadMore(false);
+        }
+        console.log(canLoadMore);
+    } 
     
 
     
+    useEffect(() => {
+        const urls = [];
+        for(let i = FIRST_POKEMON; i < pageLoadMax; i ++) {
+            const pokemon = (props.genPokemonList.find(({id}) => id === i));
+            console.log(pokemon.name);
+            urls.push('https://pokeapi.co/api/v2/pokemon/' + pokemon.name);
+
+        }
+
+        Promise.all(urls.map(url =>
+            fetch(url).then(resp => resp.json())
+        )).then(data => {
+            console.log(data);
+            setPokemon(data);
+        })
+    }, [pageLoadMax]);
+
 
 
     return (
@@ -98,24 +105,44 @@ function PokemonApp(props) {
         <div className="page-container">
             <Route path="/" exact component={() => 
                 <PokedexPage loadedPokemonList={loadedPokemonList} maxParty={MAX_PARTY} updateParty={updateParty} partyList={partyList} 
-                isInParty={(id) => isInParty(id)} updateErrorMessage={(message) => props.updateErrorMessage(message)} />} />
+                isInParty={isInParty} updateErrorMessage={props.updateErrorMessage} />} 
+            />
+            
             <Route path="/pokedex" component={() => 
                 <PokedexPage loadedPokemonList={loadedPokemonList} maxParty={MAX_PARTY} updateParty={updateParty} partyList={partyList} 
-                isInParty={(id) => isInParty(id)} updateErrorMessage={(message) => props.updateErrorMessage(message)} />} />
-            <Route path="/party" component={() => <PartyPage maxParty={MAX_PARTY} partyList={partyList} updateParty={updateParty}/>}/>
+                isInParty={isInParty} updateErrorMessage={props.updateErrorMessage} />} 
+            />
+            
+            <Route path="/party" component={() => 
+                <PartyPage maxParty={MAX_PARTY} partyList={partyList} updateParty={updateParty}/>}
+            />
         </div>
         
         {/* get pokemon api data working */}
-        { props.genPokemonList && <ul>
+        {/* { props.genPokemonList && <ul>
             <li>GEN POKEMON</li>
                 {props.genPokemonList.map((item) => {
                 return (
                     <p key={item.id}>{item.id} {item.name}</p>
                 );
             })}
+        </ul>} */}
+
+        { pokemon && <ul>
+            <li>TESTING POKEMON PAGINATION</li>
+                {pokemon.map((item) => {
+                return (
+                    <p key={item.id}>{item.id} {item.name}</p>
+                );
+            })}
         </ul>}
 
-        <p>testing fetch: {pokemon && pokemon.name}</p>
+        {canLoadMore &&
+            <p onClick={loadPokemon}>loadmore</p>
+        }
+        
+
+        {/* <p>testing fetch: {pokemon && pokemon.name}</p> */}
 
     </div>
   );
