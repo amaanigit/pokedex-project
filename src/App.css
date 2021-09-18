@@ -36,3 +36,15 @@
     width: 660px;
   }
 }
+
+.app .error-message {
+  width: 80vw;
+  border-radius: 10px;
+  background-color: #f8eded;
+  position: fixed;
+  padding: 8px 16px;
+  top: 100px;
+  left: 10vw;
+  z-index: 2;
+  border: 2px solid #FF7B73;
+}

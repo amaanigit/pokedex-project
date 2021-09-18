@@ -4,25 +4,24 @@ function PokedexCard(props) {
     const [cardCount, setCardCount] = useState(0);
   
     function handleCardClick() {
-        
-        
         if(props.cardInParty) {
             props.updateParty('remove', props);
-            props.updateErrorMessage(null);
+            // props.updateErrorMessage(null);
         } else {
             if(props.partyCount < props.maxParty) {
                 props.updateParty('add', props);
                 setCardCount(cardCount + 1);
-                props.updateErrorMessage(null);
+                // props.updateParty('add', props);
+                // props.updateErrorMessage(null);
             } else {
-                props.updateErrorMessage('you cannot have more than 6 pokemon in a party - from pokedex card');
+                props.updateErrorMessage('You cannot have more than 6 pokemon in a party. Remove a pokemon to create more space.');
             }
         }
     }
 
-    // useEffect(() => {
-    //     console.log('use effect ran');
-    // }, [cardCount]);
+    useEffect(() => {
+
+    }, []);
 
     return (
         <div className="single-card-wrapper">

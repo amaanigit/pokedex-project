@@ -140,7 +140,6 @@ function App() {
       return response.json();
     })
     .then(data => {
-      console.log(data.pokemon_species);
       setGenPokemon(orderGenPokemon(data.pokemon_species))
       updateErrorMessage(null);
     })

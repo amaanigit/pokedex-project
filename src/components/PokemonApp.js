@@ -31,16 +31,15 @@ function PokemonApp(props) {
             const addPartyList = partyList.filter(item => 1 != 2); // loop through & populate array while condition is true (1 != 2 is always true)
             addPartyList.push(pokemon);
             setPartyList(addPartyList);
-            // isInParty(pokemon.id);
+            isInParty(pokemon);
             props.updateErrorMessage(null);
         } else {
             props.updateErrorMessage('you cannot have more than 6 pokemon in a party');
-            console.log('you cannot have more than 6 in a party');
         }
         } else { // remove from party
             const removePartyList = partyList.filter(item => item.id !== pokemon.id); // loop through & populate array, except if item has matching ID
             setPartyList(removePartyList);
-            // isInParty(pokemon.id);
+            isInParty(pokemon);
             props.updateErrorMessage(null);
         }
     }
@@ -56,6 +55,20 @@ function PokemonApp(props) {
         }
     }
 
+    /**
+     * A function to handle scrolling to the bottom of an element
+     */
+     function handleScroll() {
+        // const bottom = e.target.scrollHeight - e.target.scrollTop === e.target.clientHeight;
+        // if (bottom) { 
+        //     loadPokemon();
+        // }
+        console.log('scroll-event');
+    }
+
+    /**
+     * Loading the pokemon in pagination increments of 12
+     */
     function loadPokemon() {
         if(pageLoadMax + PAGE_INCREMENT <= FIRST_POKEMON + props.genPokemonList.length) { // if it can be incremented by 12
             setPageLoadMax(pageLoadMax + PAGE_INCREMENT);
@@ -63,59 +76,54 @@ function PokemonApp(props) {
             setPageLoadMax(props.genPokemonList.length + 1);
             setCanLoadMore(false);
         }
-        console.log(canLoadMore);
     } 
     
 
-    
+    /**
+     * For the amount of pokemons loaded, fetch the data from the API where the pokemon name matches the name from the gen pokemon list
+     */
     useEffect(() => {
         const urls = [];
         for(let i = FIRST_POKEMON; i < pageLoadMax; i ++) {
             const pokemon = (props.genPokemonList.find(({id}) => id === i));
-            console.log(pokemon.name);
             urls.push('https://pokeapi.co/api/v2/pokemon/' + pokemon.name);
-
         }
 
         Promise.all(urls.map(url =>
             fetch(url).then(resp => resp.json())
         )).then(data => {
-            console.log(data);
             setPokemon(data);
         })
         // add some error handling
-    }, [pageLoadMax]);
-
+    }, [pageLoadMax, FIRST_POKEMON, props.genPokemonList]);
 
 
     return (
-    <div className="pokemon-app">
+        <div className="pokemon-app">
 
-        {pokemon && 
-        
-            <div className="page-container">
-                <Route path="/" exact component={() => 
-                    <PokedexPage loadedPokemonList={pokemon} totalPokemon={props.genPokemonList.length} maxParty={MAX_PARTY} updateParty={updateParty} 
-                    partyList={partyList} isInParty={isInParty} updateErrorMessage={props.updateErrorMessage} />} 
-                />
-                
-                <Route path="/pokedex" component={() => 
-                    <PokedexPage loadedPokemonList={pokemon} maxParty={MAX_PARTY} updateParty={updateParty} partyList={partyList} 
-                    isInParty={isInParty} updateErrorMessage={props.updateErrorMessage} />} 
-                />
-                
-                <Route path="/party" component={() => 
-                    <PartyPage maxParty={MAX_PARTY} partyList={partyList} updateParty={updateParty}/>}
-                />
-            </div>
-        }
+            {pokemon && 
+                <div className="page-container" onScroll={() => {handleScroll()}}>
+                    <Route path="/" exact component={() => 
+                        <PokedexPage loadedPokemonList={pokemon} totalPokemon={props.genPokemonList.length} maxParty={MAX_PARTY} updateParty={updateParty} 
+                        partyList={partyList} isInParty={isInParty} updateErrorMessage={props.updateErrorMessage} />} 
+                    />
+                    
+                    <Route path="/pokedex" component={() => 
+                        <PokedexPage loadedPokemonList={pokemon} totalPokemon={props.genPokemonList.length} maxParty={MAX_PARTY} updateParty={updateParty} 
+                        partyList={partyList} isInParty={isInParty} updateErrorMessage={props.updateErrorMessage} />} 
+                    />
+                    
+                    <Route path="/party" component={() => 
+                        <PartyPage maxParty={MAX_PARTY} partyList={partyList} updateParty={updateParty}/>}
+                    />
+                </div>
+            }
 
-        {canLoadMore &&
-            <p onClick={loadPokemon}>loadmore</p>
-        }
+            {canLoadMore &&
+                <p onClick={loadPokemon}>loadmore</p>
+            }
 
-
-    </div>
+        </div>
   );
 }
 

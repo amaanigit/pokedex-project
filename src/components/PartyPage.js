@@ -26,7 +26,6 @@ function PartyPage(props) {
 
       <CardGrid>
         {props.partyList.map((item) => {
-          console.log(item);
             return (
               <PartyCard key={item.id} name={item.name} id={item.id} sprite={item.sprite} types={item.types} updateParty={props.updateParty} />
             );
