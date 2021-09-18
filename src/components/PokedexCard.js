@@ -27,16 +27,21 @@ function PokedexCard(props) {
     return (
         <div className="single-card-wrapper">
             <div className={'card pokedex-card' + (props.cardInParty ? ' active' : '')} onClick={() => handleCardClick()}>
-                {/* <img className='default-image' src={defaultImg} alt='no pokemon'/> */}
-                <p>{props.sprites}</p>
+
+                <div className="image-wrapper">
+                    <img className='poke-image' src={props.sprite} alt='pokemon pic from API'/>
+                </div>
 
                 <h3>{props.name}</h3>
 
                 <div className="poke-id">#{props.id}</div>
 
                 <div className="types">
-                    <span className="type grass">{props.types}</span>
-                    {/* <span className="type poison">Poison</span> */}
+                    {props.types.map((item) => {
+                        return (
+                            <span key={item.type.name} className={'type ' + item.type.name}>{item.type.name}</span>
+                        );
+                    })}
                 </div>
 
                 {/* <p>party count: {props.partyCount}/{props.maxParty}</p> */}

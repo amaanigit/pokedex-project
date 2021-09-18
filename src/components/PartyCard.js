@@ -12,9 +12,10 @@ function PartyCard(props) {
         <div className='single-card-wrapper'>
             <div className='card party-card'>
                 <div className="image-wrapper">
-                    <p>{props.sprites}</p>
-                    {/* <img className='poke-image' src={pokemonImg} alt='testing'/> */}
+                    <img className='poke-image' src={props.sprite} alt='pokemon pic from API'/>
                 </div>
+
+                <div className="poke-id">#{props.id}</div>
 
                 <form>
                     <input type="text" placeholder={props.name} value={nickname} onChange={(e) => setNickname(e.target.value)}/>
@@ -22,11 +23,14 @@ function PartyCard(props) {
 
                 <p>{nickname}</p>
 
-                <div className="poke-id">#{props.id}</div>
+                
 
                 <div className="types">
-                      <span className="type grass">{props.types}</span>
-                      {/* <span className="type poison">Poison</span> */}
+                    {props.types.map((item) => {
+                        return (
+                            <span key={item.type.name} className={'type ' + item.type.name}>{item.type.name}</span>
+                        );
+                    })}
                 </div>
                 
                 <p className='close-button' onClick={removeFromParty}>X</p>

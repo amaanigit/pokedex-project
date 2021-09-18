@@ -11,12 +11,12 @@ function PokedexPage(props) {
       <PageButton link="/party" text="party"/>
 
       {/* make these dynamic */}
-      <ItemsTotal currentItems="12" totalItems="151"/>
+      <ItemsTotal currentItems={props.loadedPokemonList.length} totalItems={props.totalPokemon}/>
 
       <CardGrid>
       {props.loadedPokemonList.map((item) => {
           return (
-              <PokedexCard key={item.id} name={item.name} id={item.id} sprites={item.sprites} types={item.types} 
+              <PokedexCard key={item.id} name={item.name} id={item.id} sprite={item.sprites.front_default} types={item.types} 
               updateParty={props.updateParty} partyCount={props.partyList.length} cardInParty={props.isInParty(item.id)} 
               updateErrorMessage={(message) => props.updateErrorMessage(message)} maxParty={props.maxParty}/>
           );

@@ -20,19 +20,7 @@ function PokemonApp(props) {
     const [canLoadMore, setCanLoadMore] = useState(true);
 
     const [partyList, setPartyList] = useState([]);
-    const [pokemon, setPokemon] = useState(null);
-    const [loadedPokemonList, setLoadedPokemons] = useState([
-        {id: 1, name: 'Bulbasaur', sprites: 'add sprite here', types: 'add types here'},
-        {id: 2, name: 'Ivysaour', sprites: 'add sprite here', types: 'add types here'},
-        {id: 3, name: 'venusaur', sprites: 'add sprite here', types: 'add types here'},
-        {id: 4, name: 'charmander', sprites: 'add sprite here', types: 'add types here'},
-        {id: 5, name: 'charmeleon', sprites: 'add sprite here', types: 'add types here'},
-        {id: 6, name: 'charizard', sprites: 'add sprite here', types: 'add types here'},
-        {id: 7, name: 'squirtle', sprites: 'add sprite here', types: 'add types here'},
-        {id: 8, name: 'wartortle', sprites: 'add sprite here', types: 'add types here'},
-    ])
-
-    
+    const [pokemon, setPokemon] = useState(null); // maybe change this to loaded pokemon
   
     /**
      * A function to add or remove pokemon from the global party 
@@ -95,6 +83,7 @@ function PokemonApp(props) {
             console.log(data);
             setPokemon(data);
         })
+        // add some error handling
     }, [pageLoadMax]);
 
 
@@ -102,47 +91,29 @@ function PokemonApp(props) {
     return (
     <div className="pokemon-app">
 
-        <div className="page-container">
-            <Route path="/" exact component={() => 
-                <PokedexPage loadedPokemonList={loadedPokemonList} maxParty={MAX_PARTY} updateParty={updateParty} partyList={partyList} 
-                isInParty={isInParty} updateErrorMessage={props.updateErrorMessage} />} 
-            />
-            
-            <Route path="/pokedex" component={() => 
-                <PokedexPage loadedPokemonList={loadedPokemonList} maxParty={MAX_PARTY} updateParty={updateParty} partyList={partyList} 
-                isInParty={isInParty} updateErrorMessage={props.updateErrorMessage} />} 
-            />
-            
-            <Route path="/party" component={() => 
-                <PartyPage maxParty={MAX_PARTY} partyList={partyList} updateParty={updateParty}/>}
-            />
-        </div>
+        {pokemon && 
         
-        {/* get pokemon api data working */}
-        {/* { props.genPokemonList && <ul>
-            <li>GEN POKEMON</li>
-                {props.genPokemonList.map((item) => {
-                return (
-                    <p key={item.id}>{item.id} {item.name}</p>
-                );
-            })}
-        </ul>} */}
-
-        { pokemon && <ul>
-            <li>TESTING POKEMON PAGINATION</li>
-                {pokemon.map((item) => {
-                return (
-                    <p key={item.id}>{item.id} {item.name}</p>
-                );
-            })}
-        </ul>}
+            <div className="page-container">
+                <Route path="/" exact component={() => 
+                    <PokedexPage loadedPokemonList={pokemon} totalPokemon={props.genPokemonList.length} maxParty={MAX_PARTY} updateParty={updateParty} 
+                    partyList={partyList} isInParty={isInParty} updateErrorMessage={props.updateErrorMessage} />} 
+                />
+                
+                <Route path="/pokedex" component={() => 
+                    <PokedexPage loadedPokemonList={pokemon} maxParty={MAX_PARTY} updateParty={updateParty} partyList={partyList} 
+                    isInParty={isInParty} updateErrorMessage={props.updateErrorMessage} />} 
+                />
+                
+                <Route path="/party" component={() => 
+                    <PartyPage maxParty={MAX_PARTY} partyList={partyList} updateParty={updateParty}/>}
+                />
+            </div>
+        }
 
         {canLoadMore &&
             <p onClick={loadPokemon}>loadmore</p>
         }
-        
 
-        {/* <p>testing fetch: {pokemon && pokemon.name}</p> */}
 
     </div>
   );
