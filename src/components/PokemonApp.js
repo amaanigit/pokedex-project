@@ -59,12 +59,18 @@ function PokemonApp(props) {
      * A function to handle scrolling to the bottom of an element
      */
      function handleScroll() {
-        // const bottom = e.target.scrollHeight - e.target.scrollTop === e.target.clientHeight;
-        // if (bottom) { 
-        //     loadPokemon();
-        // }
-        console.log('scroll-event');
+        if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+            if(canLoadMore) {
+                loadPokemon();
+            }
+        }
     }
+
+    useEffect(() => {
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, [handleScroll]); // add can load more as a dependancy??
+
 
     /**
      * Loading the pokemon in pagination increments of 12
