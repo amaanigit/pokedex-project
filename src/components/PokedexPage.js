@@ -1,4 +1,5 @@
 import '../styles/PokedexPage.css';
+import scrollIcon from '../assets/scroll-icon.svg'
 import CardGrid from "./CardGrid";
 import ItemsTotal from "./ItemsTotal";
 import PageButton from "./PageButton";
@@ -25,6 +26,14 @@ function PokedexPage(props) {
             );
         })}
       </CardGrid>
+
+        {props.canLoadMore && 
+          <div className='scroll-prompt'>
+            <p>Scroll for more</p>
+            <img className='icon' src={scrollIcon} alt='mouse icon'/>
+          </div>
+        }
+      
 
       <ItemsTotal currentItems={props.loadedPokemonList.length} totalItems={props.totalPokemon}/>
 

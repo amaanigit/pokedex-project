@@ -2,15 +2,21 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    max-width: 95%;
+    max-width: 100%;
     margin: 0 auto;
-    margin-top: 50px;
+    margin-top: 10px;
     
+}
+
+@media only screen and (min-width: 400px) {
+    .card-grid  {
+        max-width: 95%;
+    }
 }
 
 @media only screen and (min-width: 575px) {
     .card-grid  {
-        margin-top: 115px;
+        margin-top: 50px;
         max-width: 450px;
     }
 }
@@ -18,5 +24,12 @@
 @media only screen and (min-width: 800px) {
     .card-grid  {
         max-width: 650px;
+        margin-top: 75px;
+    }
+}
+
+@media only screen and (min-width: 1024px) {
+    .card-grid  {
+        margin-top: 115px;
     }
 }

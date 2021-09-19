@@ -88,11 +88,6 @@ function PokemonApp(props) {
         // document.getElementById('inputField' + id).focus();
     }
 
-    // useEffect(() => {
-    //     console.log(pokemon);
-    //     console.log(partyList);
-    // }, [pokemon]);
-
     /**
      * A function to check if a pokemon is in the global party, based on the pokemon ID
      */
@@ -141,6 +136,18 @@ function PokemonApp(props) {
     }, [handleScroll]); 
 
 
+    // function returnCountFromPokemon(currentItem) {
+    //     let index = pokemon.findIndex(item => item.id === currentItem.id );
+    //     if(pokemon.findIndex(item => item.id === currentItem.id )) {
+    //         if(pokemon[index]) {
+    //             return pokemon[index].cardCount;
+    //         } else {
+    //             return 0;
+    //         }
+    //     } else{
+    //         return 0;
+    //     }
+    // }
 
     /**
      * On scroll, load more pokemon by fetching data from the API, using the names from the list of generation pokemons
@@ -157,6 +164,9 @@ function PokemonApp(props) {
         )).then(data => {
             // fetch the objects & add 2 new fields to handle nickname and card party count
             let dataWithAddedFields = data.map(item => ({...item, cardCount: 0, partyNickname: item.name}));
+            
+            // do nickname and count in seperate array
+
             setPokemon(dataWithAddedFields);
         })
         // add some error handling TO DO
@@ -171,12 +181,12 @@ function PokemonApp(props) {
                 <div className="page-container">
                     <Route path="/" exact component={() => 
                         <PokedexPage loadedPokemonList={pokemon} totalPokemon={props.genPokemonList.length} maxParty={MAX_PARTY} updateParty={updateParty} 
-                        partyList={partyList} isInParty={isInParty} updateErrorMessage={props.updateErrorMessage} setNickname={setNickname}/>} 
+                        partyList={partyList} isInParty={isInParty} updateErrorMessage={props.updateErrorMessage} setNickname={setNickname} canLoadMore={canLoadMore}/>}  
                     />
                     
                     <Route path="/pokedex" component={() => 
                         <PokedexPage loadedPokemonList={pokemon} totalPokemon={props.genPokemonList.length} maxParty={MAX_PARTY} updateParty={updateParty} 
-                        partyList={partyList} isInParty={isInParty} updateErrorMessage={props.updateErrorMessage} setNickname={setNickname}/>} 
+                        partyList={partyList} isInParty={isInParty} updateErrorMessage={props.updateErrorMessage} setNickname={setNickname} canLoadMore={canLoadMore}/>} 
                     />
                     
                     <Route path="/party" component={() => 

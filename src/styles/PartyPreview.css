@@ -5,6 +5,7 @@
     right: 25vw;
     width: 100%;
     text-align: center;
+    margin-top: 20px;
 }
 
 .party-preview .pokemon-image {
@@ -28,15 +29,7 @@
     width: 25px;
 }
 
-
-@media only screen and (min-width: 1024px) {
-    .party-preview {
-        display: block;
-        position: fixed;
-        width: 96px;
-        right: 5vw;
-    }
-
+@media only screen and (min-width: 700px) {
     .party-preview .pokemon-image {
         display: block;
         width: 96px;
@@ -53,9 +46,35 @@
     }
 }
 
+@media only screen and (min-width: 1024px) {
+    .party-preview {
+        margin-top: 0;
+        display: block;
+        position: fixed;
+        width: 96px;
+        right: 5vw;
+    }
+}
+
 @media only screen and (min-width: 1350px) {
     .party-preview {
         right: 15vw;
+        width: 96px;
+    }
+
+    .party-preview .pokemon-image {
+        display: block;
+        width: 96px;
+    }
+
+    .party-preview .default-image-wrapper {
+        display: flex;
+        width: 96px;
+        height: 96px;
+    }
+
+    .party-preview .default-image {
+        width: 50px;
     }
 }
 

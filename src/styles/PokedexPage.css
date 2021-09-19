@@ -4,3 +4,38 @@
     margin-top: 60px;
     margin-bottom: 20px;
 }
+
+.pokedex-page .scroll-prompt {
+    text-align: center;
+    font-size: 12px;
+    max-width: 60px;
+    position: fixed;
+    bottom: 100px;
+    color: #333333;
+    display: none;
+}
+
+.pokedex-page .scroll-prompt p {
+    opacity: 0.6;
+}
+
+@media only screen and (min-width: 1024px) {
+    .pokedex-page .scroll-prompt  {
+        position: fixed;
+        display: block;
+        left: 5vw;
+    }
+}
+
+@media only screen and (min-width: 1350px) {
+    .pokedex-page .scroll-prompt  {
+        position: fixed;
+        left: 15vw;
+    }
+}
+
+@media only screen and (min-width: 2000px) {
+    .pokedex-page .scroll-prompt  {
+        left: 25vw;
+    } 
+}

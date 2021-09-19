@@ -19,7 +19,25 @@
 .app .page-container {
   position: relative;
   min-height: calc(100vh - 80px);
-  padding: 40px;
+  padding: 20px;
+}
+
+.app .error-message {
+  width: 90vw;
+  border-radius: 10px;
+  background-color: #f8eded;
+  position: fixed;
+  padding: 8px 16px;
+  top: 100px;
+  left: 5vw;
+  z-index: 2;
+  border: 2px solid #FF7B73;
+}
+
+@media only screen and (min-width: 575px) {
+  .app .page-container {
+    padding: 40px;
+  }
 }
 
 @media only screen and (min-width: 600px) {
@@ -37,14 +55,8 @@
   }
 }
 
-.app .error-message {
-  width: 90vw;
-  border-radius: 10px;
-  background-color: #f8eded;
-  position: fixed;
-  padding: 8px 16px;
-  top: 100px;
-  left: 5vw;
-  z-index: 2;
-  border: 2px solid #FF7B73;
+@media only screen and (min-width: 2000px) {
+  .app .background-image {
+    left: 15vw;
+  }
 }
