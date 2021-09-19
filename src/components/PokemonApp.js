@@ -96,7 +96,7 @@ function PokemonApp(props) {
             if(pageLoadMax + PAGE_INCREMENT <= FIRST_POKEMON + props.genPokemonList.length) { // if it can be incremented by 12
                 setPageLoadMax(pageLoadMax + PAGE_INCREMENT);
             } else {
-                setPageLoadMax(props.genPokemonList.length + 1);
+                setPageLoadMax(FIRST_POKEMON + props.genPokemonList.length);
                 setCanLoadMore(false);
             }
         }, 250);      

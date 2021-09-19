@@ -20,7 +20,7 @@ function PartyPage(props) {
   }
 
   return(
-    <div class='party-page'>
+    <div className='party-page'>
       <PageTitle text="Ash's party"/>
       <PageButton link="/pokedex" text="Dex"/>
       <ItemsTotal currentItems={props.partyList.length} totalItems={props.maxParty}/>

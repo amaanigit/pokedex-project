@@ -1,6 +1,7 @@
 import '../styles/HeaderNav.css';
 import logo from '../assets/logo.svg';
 import userPhoto from '../assets/user-photo.png';
+import backgroundPokemon from '../assets/background-pokemon.svg';
 import React from 'react';
 import { NavLink, Link } from "react-router-dom";
 
@@ -13,6 +14,12 @@ class HeaderNav extends React.Component {
 
     toggle() {
         this.setState({mobileExpanded: !this.state.mobileExpanded});
+        if(this.state.mobileExpanded) {
+            document.body.classList.remove('mobile-nav-expanded');
+        } else {
+            document.body.classList.add('mobile-nav-expanded');
+        }
+        
     }
 
     render() {
@@ -48,11 +55,12 @@ class HeaderNav extends React.Component {
                         <div className='user-photo'><img src={userPhoto} alt='user profile'/></div>
 
                         <ul className="nav-links">
-                            <li><NavLink to="/pokedex">pokedex</NavLink></li>
-                            <li><NavLink to="/party">Party</NavLink></li>
+                            <li><NavLink onClick={this.toggle.bind(this)} to="/pokedex">pokedex</NavLink></li>
+                            <li><NavLink onClick={this.toggle.bind(this)} to="/party">Party</NavLink></li>
                         </ul>
-                        <Link to="/"><img className='logo' src={logo} alt='logo'/></Link>
+                        <Link onClick={this.toggle.bind(this)} className='logo-link' to="/"><img className='logo' src={logo} alt='logo'/></Link>
                     </div>
+                    <img className='background-image' src={backgroundPokemon} alt='background pokemon asset'/>
                 </div>
             </header>
         );
