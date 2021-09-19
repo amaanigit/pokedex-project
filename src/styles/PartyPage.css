@@ -1,0 +1,24 @@
+.party-page .items-total-wrapper {
+    position: fixed;
+    width: 75px;
+    top: 260px;
+    right: 25vw;
+}
+
+@media only screen and (min-width: 1024px) {
+    .party-page .items-total-wrapper {
+        right: 5vw;
+    }
+}
+
+@media only screen and (min-width: 1350px) {
+    .party-page .items-total-wrapper  {
+        right: 15vw;
+    }
+}
+
+@media only screen and (min-width: 2000px) {
+    .party-page .items-total-wrapper {
+        right: 25vw;
+    } 
+}

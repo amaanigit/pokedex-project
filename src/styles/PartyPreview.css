@@ -1,28 +1,66 @@
 .party-preview {
-    position: fixed;
+    position: unset;
+    display: flex;
     top: 250px;
     right: 25vw;
-    width: 96px;
+    width: 100%;
     text-align: center;
 }
 
 .party-preview .pokemon-image {
-    display: block;
+    display: inline-block;
     margin: 8px auto;
-    width: 96px;
+    width: 42px;
     height: auto;
     opacity: 0.4;
 }
 
 .party-preview .default-image-wrapper {
-    width: 96px;
-    height: 96px;
+    width: 42px;
+    height: 42px;
     margin: 8px auto;
-    display: flex;
+    display: inline-flex;
     align-items: center;
     justify-content: center;
 }
 
 .party-preview .default-image {
-    width: 50px;
+    width: 25px;
+}
+
+
+@media only screen and (min-width: 1024px) {
+    .party-preview {
+        display: block;
+        position: fixed;
+        width: 96px;
+        right: 5vw;
+    }
+
+    .party-preview .pokemon-image {
+        display: block;
+        width: 96px;
+    }
+
+    .party-preview .default-image-wrapper {
+        display: flex;
+        width: 96px;
+        height: 96px;
+    }
+
+    .party-preview .default-image {
+        width: 50px;
+    }
+}
+
+@media only screen and (min-width: 1350px) {
+    .party-preview {
+        right: 15vw;
+    }
+}
+
+@media only screen and (min-width: 2000px) {
+    .party-preview {
+        right: 25vw;
+    } 
 }

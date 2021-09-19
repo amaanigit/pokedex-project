@@ -1,3 +1,4 @@
+import '../styles/PartyPage.css';
 import CardGrid from "./CardGrid";
 import EmptyPartyCard from './EmptyPartyCard';
 import ItemsTotal from "./ItemsTotal";
@@ -19,9 +20,9 @@ function PartyPage(props) {
   }
 
   return(
-    <div>
+    <div class='party-page'>
       <PageTitle text="Ash's party"/>
-      <PageButton link="/pokedex" text="dex"/>
+      <PageButton link="/pokedex" text="Dex"/>
       <ItemsTotal currentItems={props.partyList.length} totalItems={props.maxParty}/>
 
       <CardGrid>

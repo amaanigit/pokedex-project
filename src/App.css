@@ -7,9 +7,9 @@
 }
 
 .app .background-image {
-  position: absolute;
+  position: fixed;
   z-index: -1;
-  top: 0;
+  top: 100px;
   left: auto;
   right: 75px;
   width: 450px;

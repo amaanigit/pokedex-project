@@ -29,12 +29,6 @@
     border: 4px solid rgba(16, 123, 106, 0.4);
 }
 
-.single-card-wrapper .default-image {
-    width: auto;
-    height: 98px;
-    margin-top: -49px;
-}
-
 .single-card-wrapper .image-wrapper {
     background-color: #00000010; /* get exact value for bg colour */
     width: 94px;
@@ -81,10 +75,69 @@
 }
 
 /* type colours */
-.single-card-wrapper .types .type.grass {
-    background-color: #8BC460;
+.single-card-wrapper .types .type.normal {
+    background-color: #59805b;
+}
+
+.single-card-wrapper .types .type.fighting {
+    background-color: #8d0d0d;
+}
+
+.single-card-wrapper .types .type.flying {
+    background-color: #A494EA;
 }
 
 .single-card-wrapper .types .type.poison {
     background-color: #94499B;
 }
+
+.single-card-wrapper .types .type.ground {
+    background-color: #975100;
+}
+
+.single-card-wrapper .types .type.rock {
+    background-color: #696675;
+}
+
+.single-card-wrapper .types .type.bug {
+    background-color: #135036;
+}
+
+.single-card-wrapper .types .type.ghost {
+    background-color: #16131a;
+}
+
+.single-card-wrapper .types .type.fire {
+    background-color: #E28544;
+}
+
+.single-card-wrapper .types .type.water {
+    background-color: #142779;
+}
+
+.single-card-wrapper .types .type.grass {
+    background-color: #8BC460;
+}
+
+.single-card-wrapper .types .type.electric {
+    background-color: #d1ae13;
+}
+
+.single-card-wrapper .types .type.psychic {
+    background-color: #911d40;
+}
+
+.single-card-wrapper .types .type.ice {
+    background-color: #14475c;
+}
+
+.single-card-wrapper .types .type.red-blue {
+    background-color: #301e97;
+}
+
+.single-card-wrapper .types .type.yellow {
+    background-color: #c4c116;
+}
+
+
+

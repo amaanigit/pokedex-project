@@ -13,7 +13,7 @@ function PokedexPage(props) {
 
       <div>
         <PartyPreview partyList={props.partyList} maxParty={props.maxParty}/>
-        <PageButton link="/party" text="party"/>
+        <PageButton link="/party" text="Party"/>
       </div>
 
       <CardGrid>

@@ -1,13 +1,34 @@
 .page-title-wrapper {
-    max-width: 144px;
+    max-width: 100%;
     margin-right: 80px;
-    display: inline-block;
-
-    position: fixed;
+    display: block;
+    position:unset;
     left: 25vw;
-    top: 250px;
+    top: 275px; 
 }
 
 .page-title-wrapper * {
     margin: 0;
+}
+
+@media only screen and (min-width: 1024px) {
+    .page-title-wrapper {
+        display: inline-block;
+        max-width: 144px;
+        position: fixed;
+        left: 5vw;
+    }
+}
+
+@media only screen and (min-width: 1350px) {
+    .page-title-wrapper {
+        position: fixed;
+        left: 15vw;
+    }
+}
+
+@media only screen and (min-width: 2000px) {
+    .page-title-wrapper {
+        left: 25vw;
+    } 
 }

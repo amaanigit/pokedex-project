@@ -7,7 +7,7 @@ class PageButton extends Component {
   render() {
     return (
       <div className="page-button-wrapper">
-         <Link className="page-button" to={this.props.link}><span>{this.props.text}<img className='arrow' src={arrow} alt='arrow right'/></span></Link>
+         <Link className="page-button" to={this.props.link}><span className='text'>{this.props.text}</span><img className='arrow' src={arrow} alt='arrow right'/></Link>
       </div>
     );
   }
