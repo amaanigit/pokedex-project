@@ -43,6 +43,8 @@ function PartyCard(props) {
                         );
                     })}
                 </div>
+
+                {<p>Added to party { props.cardCount } times</p>}
                 
                 <p className='close-button' onClick={removeFromParty}><img className='icon' src={closeIcon} alt='close icon'/></p>
             </div>

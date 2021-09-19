@@ -24,21 +24,38 @@ function PokemonApp(props) {
     /**
      * A function to add or remove pokemon from the global party 
      */
-    function updateParty(action, pokemon) {
+    function updateParty(action, pokemonItem) {
         if(action === 'add') {
             if(partyList.length < MAX_PARTY) { 
                 const addPartyList = partyList.filter(item => 1 != 2); // loop through & populate array while condition is true (1 != 2 is always true)
-                addPartyList.push(pokemon);
+                
+                // create a new item, and update the card count value
+                let updatedPartyItem = {
+                    ...pokemonItem,
+                    cardCount: pokemonItem.cardCount + 1
+                }
+                
+                addPartyList.push(updatedPartyItem);
                 setPartyList(addPartyList);
-                isInParty(pokemon);
+                isInParty(pokemonItem.id);
                 props.updateErrorMessage(null);
+
+                // update the count value in pokemon list so it is in sync globally
+                let updatedPokemons = [...pokemon];
+                let index = pokemon.findIndex(item => item.id === pokemonItem.id );
+                let updatedItem = {
+                    ...pokemon[index],
+                    cardCount: pokemonItem.cardCount + 1
+                }
+                updatedPokemons[index] = updatedItem;
+                setPokemon(updatedPokemons);
             } else {
                 props.updateErrorMessage('you cannot have more than 6 pokemon in a party');
             }
         } else { // remove from party
-            const removePartyList = partyList.filter(item => item.id !== pokemon.id); // loop through & populate array, except if item has matching ID
+            const removePartyList = partyList.filter(item => item.id !== pokemonItem.id); // loop through & populate array, except if item has matching ID
             setPartyList(removePartyList);
-            isInParty(pokemon);
+            isInParty(pokemonItem.id);
             props.updateErrorMessage(null);
         }
     }

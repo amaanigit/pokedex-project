@@ -1,7 +1,4 @@
-import { useState } from 'react';
-
 function PokedexCard(props) {
-    const [cardCount, setCardCount] = useState(0);
 
     // if have time, move this function up to be more 'global'
     /**
@@ -19,7 +16,6 @@ function PokedexCard(props) {
             props.updateErrorMessage(null);
         } else {
             if(props.partyCount < props.maxParty) {
-                setCardCount(cardCount + 1); // need to store this in the parent component??
                 props.updateParty('add', props);
                 props.updateErrorMessage(null);
             } else {
@@ -48,9 +44,7 @@ function PokedexCard(props) {
                     })}
                 </div>
 
-                {/* <p>party count: {props.partyCount}/{props.maxParty}</p> */}
-
-                {(props.cardInParty) ? <p>FIX ME added to party { cardCount } times</p> : <p>FIX ME added to { cardCount } parties</p>}
+                {(props.cardInParty) ? <p>Added to party { props.cardCount } times</p> : <p>Added to { props.cardCount } parties</p>}
             </div>
         </div>
     );

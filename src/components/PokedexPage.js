@@ -19,7 +19,7 @@ function PokedexPage(props) {
       <CardGrid>
         {props.loadedPokemonList.map((item) => {
             return (
-                <PokedexCard key={item.id} name={item.name} id={item.id} sprite={item.sprites.front_default} types={item.types} 
+                <PokedexCard key={item.id} name={item.name} id={item.id} sprite={item.sprites.front_default} types={item.types}
                 updateParty={props.updateParty} partyCount={props.partyList.length} cardInParty={props.isInParty(item.id)}
                 updateErrorMessage={(message) => props.updateErrorMessage(message)} maxParty={props.maxParty} partyNickname={item.partyNickname} cardCount={item.cardCount}/>
             );
