@@ -2,6 +2,16 @@ import { useState } from 'react';
 
 function PokedexCard(props) {
     const [cardCount, setCardCount] = useState(0);
+
+    // if have time, move this function up to be more 'global'
+    /**
+     * Takes in a number (num), and adds leading 0's for a given size. Returns it as a string.
+     */
+    function formatId(num, size) {
+        num = num.toString();
+        while (num.length < size) num = "0" + num;
+        return num;
+    }
   
     function handleCardClick() {
         if(props.cardInParty) {
@@ -26,7 +36,7 @@ function PokedexCard(props) {
                     <img className='poke-image' src={props.sprite} alt='pokemon pic from API'/>
                 </div>
 
-                <div className="poke-id">#{props.id}</div>
+                <div className="poke-id">#{formatId(props.id, 3)}</div>
 
                 <h3 className="card-title">{props.name}</h3>
 
