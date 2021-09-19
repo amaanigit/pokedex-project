@@ -131,14 +131,7 @@ function PokemonApp(props) {
                         <PartyPage maxParty={MAX_PARTY} partyList={partyList} updateParty={updateParty}/>}
                     />
                 </div>
-
-                
             }
-
-            {canLoadMore &&
-                <p onClick={loadPokemon}>loadmore</p>
-            }
-
         </div>
   );
 }

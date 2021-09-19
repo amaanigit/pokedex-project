@@ -1,14 +1,21 @@
+import '../styles/PokedexPage.css';
 import CardGrid from "./CardGrid";
 import ItemsTotal from "./ItemsTotal";
 import PageButton from "./PageButton";
 import PageTitle from "./PageTitle";
+import PartyPreview from "./PartyPreview";
 import PokedexCard from "./PokedexCard";
 
 function PokedexPage(props) {
   return(
-    <div>
+    <div className='pokedex-page'>
       <PageTitle text="Choose your team"/>
-      <PageButton link="/party" text="party"/>
+
+      <div>
+        <PartyPreview partyList={props.partyList} maxParty={props.maxParty}/>
+        <PageButton link="/party" text="party"/>
+      </div>
+      
 
       
 
@@ -24,14 +31,8 @@ function PokedexPage(props) {
 
       <ItemsTotal currentItems={props.loadedPokemonList.length} totalItems={props.totalPokemon}/>
 
-      <ul>
-          <li>PARTY LIST</li>
-          {props.partyList.map((item) => {
-              return (
-                  <p key={item.id}>{item.name}</p>
-              );
-          })}
-      </ul>
+      
+      
 
     </div>
   );

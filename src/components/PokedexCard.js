@@ -26,9 +26,9 @@ function PokedexCard(props) {
                     <img className='poke-image' src={props.sprite} alt='pokemon pic from API'/>
                 </div>
 
-                <h3>{props.name}</h3>
-
                 <div className="poke-id">#{props.id}</div>
+
+                <h3 className="card-title">{props.name}</h3>
 
                 <div className="types">
                     {props.types.map((item) => {

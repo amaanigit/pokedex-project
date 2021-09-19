@@ -2,4 +2,12 @@
     max-width: 144px;
     margin-right: 80px;
     display: inline-block;
+
+    position: fixed;
+    left: 25vw;
+    top: 250px;
+}
+
+.page-title-wrapper * {
+    margin: 0;
 }

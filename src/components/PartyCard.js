@@ -1,5 +1,9 @@
-import '../styles/Card.css';
 import { useState } from 'react';
+
+import '../styles/Card.css';
+import '../styles/PartyCard.css';
+import closeIcon from '../assets/x-icon.svg';
+
 
 function PartyCard(props) {
     const [nickname, setNickname] = useState(props.name);
@@ -17,13 +21,10 @@ function PartyCard(props) {
 
                 <div className="poke-id">#{props.id}</div>
 
-                <form>
+                <form className='card-title-form'>
                     <input type="text" placeholder={props.name} value={nickname} onChange={(e) => setNickname(e.target.value)}/>
+                    <hr/>
                 </form>
-
-                <p>{nickname}</p>
-
-                
 
                 <div className="types">
                     {props.types.map((item) => {
@@ -33,7 +34,7 @@ function PartyCard(props) {
                     })}
                 </div>
                 
-                <p className='close-button' onClick={removeFromParty}>X</p>
+                <p className='close-button' onClick={removeFromParty}><img className='icon' src={closeIcon} alt='close icon'/></p>
             </div>
         </div>
     );

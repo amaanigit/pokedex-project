@@ -1,0 +1,56 @@
+/* builds from the Card.css styles */
+
+.card.party-card:hover {
+    background: #F9F9F9;
+    cursor: default;
+}
+
+.card.party-card {
+    border: 4px solid rgba(16, 123, 106, 0.4);
+}
+
+.card.party-card .card-title-form {
+    margin: 10px 0;
+}
+
+.card.party-card .card-title-form input {
+    border: none;
+    outline: none;
+    background-color: transparent;
+    font-size: 30px;
+    font-family: 'Lora', serif;
+    font-weight: 500;
+    text-transform: capitalize;
+    color: #333333;
+    text-align: center;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+.card.party-card hr {
+    border: none;
+    border-top: dashed black;
+    width: 80%;
+}
+
+.card.party-card .close-button {
+    position: absolute;
+    bottom: -12px;
+    left: calc(50% - 12px);
+    display: inline-block;
+    margin: 0;
+    padding: 8px 11px;
+    border-radius: 22px;
+    background: #F8F8F8;
+    border: 1px solid #FFFFFF;
+    box-sizing: border-box;
+    box-shadow: -10px -10px 4px rgba(255, 255, 255, 0.2), 10px 10px 20px rgba(0, 0, 0, 0.05);
+    cursor: pointer;
+}
+
+.card.party-card .close-button:hover {
+    background-color: #F3FFF4;
+    border-color: black;
+}
+

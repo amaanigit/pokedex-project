@@ -1,0 +1,28 @@
+.party-preview {
+    position: fixed;
+    top: 250px;
+    right: 25vw;
+    width: 96px;
+    text-align: center;
+}
+
+.party-preview .pokemon-image {
+    display: block;
+    margin: 8px auto;
+    width: 96px;
+    height: auto;
+    opacity: 0.4;
+}
+
+.party-preview .default-image-wrapper {
+    width: 96px;
+    height: 96px;
+    margin: 8px auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.party-preview .default-image {
+    width: 50px;
+}
