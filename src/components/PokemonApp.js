@@ -44,6 +44,39 @@ function PokemonApp(props) {
     }
 
     /**
+     * A function to update the nickname of a pokemon (if it has been changed in the party card)
+     */
+    function setNickname(id, newNickname) {
+        // update the nickname value in the party list
+        let updatedPokemons = [...partyList];
+        let index = partyList.findIndex(item => item.id === id );
+        let updatedItem = {
+            ...partyList[index],
+            partyNickname: newNickname
+        }
+        updatedPokemons[index] = updatedItem;
+        setPartyList(updatedPokemons);
+
+        // update the nickanme value in pokemon list so it's in sync (if its removed and added it will still show the nickname)
+        updatedPokemons = [...pokemon];
+        index = pokemon.findIndex(item => item.id === id );
+        updatedItem = {
+            ...pokemon[index],
+            partyNickname: newNickname
+        }
+        updatedPokemons[index] = updatedItem;
+        setPokemon(updatedPokemons);
+        
+        // TO DO - add focus field to the input that was last clicked, so it's not laggy
+        // document.getElementById('inputField' + id).focus();
+    }
+
+    // useEffect(() => {
+    //     console.log(pokemon);
+    //     console.log(partyList);
+    // }, [pokemon]);
+
+    /**
      * A function to check if a pokemon is in the global party, based on the pokemon ID
      */
     function isInParty(pokeID) {
@@ -93,7 +126,7 @@ function PokemonApp(props) {
 
 
     /**
-     * For the amount of pokemons loaded, fetch the data from the API where the pokemon name matches the name from the gen pokemon list
+     * On scroll, load more pokemon by fetching data from the API, using the names from the list of generation pokemons
      */
     useEffect(() => {
         const urls = [];
@@ -105,7 +138,9 @@ function PokemonApp(props) {
         Promise.all(urls.map(url =>
             fetch(url).then(resp => resp.json())
         )).then(data => {
-            setPokemon(data);
+            // fetch the objects & add 2 new fields to handle nickname and card party count
+            let dataWithAddedFields = data.map(item => ({...item, cardCount: 0, partyNickname: item.name}));
+            setPokemon(dataWithAddedFields);
         })
         // add some error handling TO DO
     }, [pageLoadMax, FIRST_POKEMON, props.genPokemonList]);
@@ -119,16 +154,16 @@ function PokemonApp(props) {
                 <div className="page-container">
                     <Route path="/" exact component={() => 
                         <PokedexPage loadedPokemonList={pokemon} totalPokemon={props.genPokemonList.length} maxParty={MAX_PARTY} updateParty={updateParty} 
-                        partyList={partyList} isInParty={isInParty} updateErrorMessage={props.updateErrorMessage} />} 
+                        partyList={partyList} isInParty={isInParty} updateErrorMessage={props.updateErrorMessage} setNickname={setNickname}/>} 
                     />
                     
                     <Route path="/pokedex" component={() => 
                         <PokedexPage loadedPokemonList={pokemon} totalPokemon={props.genPokemonList.length} maxParty={MAX_PARTY} updateParty={updateParty} 
-                        partyList={partyList} isInParty={isInParty} updateErrorMessage={props.updateErrorMessage} />} 
+                        partyList={partyList} isInParty={isInParty} updateErrorMessage={props.updateErrorMessage} setNickname={setNickname}/>} 
                     />
                     
                     <Route path="/party" component={() => 
-                        <PartyPage maxParty={MAX_PARTY} partyList={partyList} updateParty={updateParty}/>}
+                        <PartyPage maxParty={MAX_PARTY} partyList={partyList} updateParty={updateParty} setNickname={setNickname}/>}
                     />
                 </div>
             }

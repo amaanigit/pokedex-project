@@ -1,4 +1,4 @@
-import { useState } from 'react';
+// import { useState } from 'react';
 
 import '../styles/Card.css';
 import '../styles/PartyCard.css';
@@ -6,7 +6,7 @@ import closeIcon from '../assets/x-icon.svg';
 
 
 function PartyCard(props) {
-    const [nickname, setNickname] = useState(props.name);
+    // const [nickname, setNickname] = useState(props.name);
 
     function removeFromParty() {
         props.updateParty('remove', props);
@@ -22,7 +22,7 @@ function PartyCard(props) {
                 <div className="poke-id">#{props.id}</div>
 
                 <form className='card-title-form'>
-                    <input type="text" placeholder={props.name} value={nickname} onChange={(e) => setNickname(e.target.value)}/>
+                    <input id={'inputField' + props.id} type="text" placeholder={props.name} value={props.partyNickname} onChange={(e) => props.setNickname(props.id, e.target.value)}/>
                     <hr/>
                 </form>
 
