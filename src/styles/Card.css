@@ -1,7 +1,7 @@
 .single-card-wrapper {
     display: inline-block;
-    width: 198px;
-    height: 200px;
+    width: 150px;
+    height: 160px;
     position: relative;
     text-align: center;
     margin-top: 50px;
@@ -31,8 +31,8 @@
 
 .single-card-wrapper .image-wrapper {
     background-color: #00000010; /* get exact value for bg colour */
-    width: 94px;
-    height: 48px;
+    width: 72px;
+    height: 37px;
     margin: 0 auto;
     margin-top: -1px;
     border-radius: 0 0 50px 50px;
@@ -43,23 +43,25 @@
     position: absolute;
     bottom: -16px;
     left: 50%;
-    margin-left: -75px;
-    width: 150px;
+    margin-left: -56px;
+    width: 115px;
 }
 
 .single-card-wrapper .poke-id {
     display: inline-block;
     margin: 5px auto;
-    padding: 5px 14px;
+    padding: 3px 11px;
     border-radius: 32px;
     background-color: #33333320; /* get exact value for bg colour */
     font-weight: bold;
     line-height: 1rem;
+    font-size: 9px;
 }
 
 .single-card-wrapper .card-title {
-    font-size: 30px;
-    margin: 10px 0;
+    font-size: 20px;
+    margin: 0;
+    margin-bottom: 10px;
     font-family: 'Lora', serif;
     font-weight: 500;
     text-transform: capitalize;
@@ -72,11 +74,44 @@
     border-radius: 4px;
     font-weight: bold;
     color: white;
+    font-size: 9px;
+}
+
+@media only screen and (min-width: 500px) {
+    .single-card-wrapper {
+        width: 198px;
+        height: 200px;
+    }
+
+    .single-card-wrapper .image-wrapper {
+        width: 94px;
+        height: 45px;
+    }
+
+
+    .single-card-wrapper .image-wrapper .poke-image {
+        width: 150px;
+        margin-left: -75px;
+    }
+
+    .single-card-wrapper .poke-id {
+        font-size: 12px;
+        padding: 5px 14px;
+    }
+
+    .single-card-wrapper .card-title {
+        font-size: 30px;
+        margin: 10px 0;
+    }
+
+    .single-card-wrapper .types .type {
+        font-size: 12px;
+    }
 }
 
 /* type colours */
 .single-card-wrapper .types .type.normal {
-    background-color: #59805b;
+    background-color: #4b9683;
 }
 
 .single-card-wrapper .types .type.fighting {

@@ -10,14 +10,16 @@
 }
 
 .card.party-card .card-title-form {
-    margin: 10px 0;
+    margin: 0;
+    margin-top: 0;
+    margin-bottom: 0;
 }
 
 .card.party-card .card-title-form input {
     border: none;
     outline: none;
     background-color: transparent;
-    font-size: 30px;
+    font-size: 20px;
     font-family: 'Lora', serif;
     font-weight: 500;
     text-transform: capitalize;
@@ -26,18 +28,19 @@
     width: 100%;
     padding: 0;
     margin: 0;
+    height: 20px;
 }
 
 .card.party-card hr {
     border: none;
     border-top: dashed black;
-    width: 80%;
+    width: 70%;
 }
 
 .card.party-card .close-button {
     position: absolute;
     bottom: -12px;
-    left: calc(50% - 12px);
+    left: calc(50% - 15px);
     display: inline-block;
     margin: 0;
     padding: 8px 11px;
@@ -52,5 +55,26 @@
 .card.party-card .close-button:hover {
     background-color: #F3FFF4;
     border-color: black;
+}
+
+.card.party-card .party-text {
+    margin-top: 8px;
+}
+
+@media only screen and (min-width: 500px) {
+    .card.party-card .card-title-form input {
+        font-size: 30px;
+        height: 30px;
+    }
+
+    .card.party-card .card-title-form {
+        margin: 0;
+        margin-top: 5px;
+        margin-bottom: 10px;
+    }
+
+    .card.party-card .party-text {
+        margin-top: 10px;
+    }
 }
 

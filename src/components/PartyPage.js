@@ -21,10 +21,13 @@ function PartyPage(props) {
 
   return(
     <div className='party-page'>
-      <PageTitle text="Ash's party"/>
+      <div className='title-section'>
+        <PageTitle text="Ash's party"/>
+        <ItemsTotal currentItems={props.partyList.length} totalItems={props.maxParty}/>
+      </div>
+      
       <PageButton link="/pokedex" text="Dex"/>
-      <ItemsTotal currentItems={props.partyList.length} totalItems={props.maxParty}/>
-
+      
       <CardGrid>
         {props.partyList.map((item) => {
             return (

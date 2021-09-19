@@ -39,8 +39,18 @@ header .nav-content {
 }
 
 header .nav-links {
+    font-weight: bold;
+    font-size: 13px;
     margin: 0;
     padding: 0;
+}
+
+header .nav-links a{
+    opacity: 0.6;
+}
+
+header .nav-links a.active{
+    opacity: 1;
 }
 
 header .nav-links li {

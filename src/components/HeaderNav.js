@@ -32,11 +32,11 @@ class HeaderNav extends React.Component {
         return (
             <header className={headerClass.join(' ')}>
                 <div className='header-content-wrapper'>
-                    <Link to="/"><img className='logo' src={logo} alt='logo'/></Link>
+                    <Link to="/pokedex"><img className='logo' src={logo} alt='logo'/></Link>
                     
                     <div className="nav-content">
                         <ul className="nav-links">
-                            <li><NavLink to="/pokedex">pokedex</NavLink></li>
+                            <li><NavLink to="/pokedex">Pokedex</NavLink></li>
                             <li><NavLink to="/party">Party</NavLink></li>
                         </ul>
 
