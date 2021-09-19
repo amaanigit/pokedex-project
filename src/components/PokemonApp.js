@@ -1,5 +1,5 @@
 // -- external imports --
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { Route } from 'react-router';
 
 // -- local imports --
@@ -15,27 +15,26 @@ function PokemonApp(props) {
     const FIRST_POKEMON = props.genPokemonList[0].id;
     const PAGE_INCREMENT = 12;
 
-
     const [pageLoadMax, setPageLoadMax] = useState(FIRST_POKEMON + 12);
     const [canLoadMore, setCanLoadMore] = useState(true);
 
     const [partyList, setPartyList] = useState([]);
-    const [pokemon, setPokemon] = useState(null); // maybe change this to loaded pokemon
+    const [pokemon, setPokemon] = useState([]); // maybe change this to loaded pokemon
   
     /**
      * A function to add or remove pokemon from the global party 
      */
     function updateParty(action, pokemon) {
         if(action === 'add') {
-        if(partyList.length < MAX_PARTY) { 
-            const addPartyList = partyList.filter(item => 1 != 2); // loop through & populate array while condition is true (1 != 2 is always true)
-            addPartyList.push(pokemon);
-            setPartyList(addPartyList);
-            isInParty(pokemon);
-            props.updateErrorMessage(null);
-        } else {
-            props.updateErrorMessage('you cannot have more than 6 pokemon in a party');
-        }
+            if(partyList.length < MAX_PARTY) { 
+                const addPartyList = partyList.filter(item => 1 != 2); // loop through & populate array while condition is true (1 != 2 is always true)
+                addPartyList.push(pokemon);
+                setPartyList(addPartyList);
+                isInParty(pokemon);
+                props.updateErrorMessage(null);
+            } else {
+                props.updateErrorMessage('you cannot have more than 6 pokemon in a party');
+            }
         } else { // remove from party
             const removePartyList = partyList.filter(item => item.id !== pokemon.id); // loop through & populate array, except if item has matching ID
             setPartyList(removePartyList);
@@ -56,34 +55,42 @@ function PokemonApp(props) {
     }
 
     /**
-     * A function to handle scrolling to the bottom of an element
+     * Loading the pokemon in pagination increments of 12, wrapped in a use callback function
      */
-     function handleScroll() {
+    const loadPokemon = useCallback(() => { 
+        // wrapped it around a 250ms timeout function to demostrate it's working (otherwise it's too fast). This can be removed.
+        setTimeout(() => {
+            if(pageLoadMax + PAGE_INCREMENT <= FIRST_POKEMON + props.genPokemonList.length) { // if it can be incremented by 12
+                setPageLoadMax(pageLoadMax + PAGE_INCREMENT);
+            } else {
+                setPageLoadMax(props.genPokemonList.length + 1);
+                setCanLoadMore(false);
+            }
+        }, 250);      
+    }, [props.genPokemonList, FIRST_POKEMON, pageLoadMax]);
+
+
+    /**
+     * If there's more pokemon to load, load more once the user has scrolled to the bottom, wrapped in a used callback function
+     */
+    const handleScroll = useCallback(() => {
         if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
             if(canLoadMore) {
                 loadPokemon();
             }
         }
-    }
+    }, [canLoadMore, loadPokemon]);
 
+   
+    /**
+     * Add scroll event listeners if there are more items to load
+     */
     useEffect(() => {
         window.addEventListener('scroll', handleScroll);
-        return () => window.removeEventListener('scroll', handleScroll);
-    }, [handleScroll]); // add can load more as a dependancy??
+        return () => window.removeEventListener('scroll', handleScroll); 
+    }, [handleScroll]); 
 
 
-    /**
-     * Loading the pokemon in pagination increments of 12
-     */
-    function loadPokemon() {
-        if(pageLoadMax + PAGE_INCREMENT <= FIRST_POKEMON + props.genPokemonList.length) { // if it can be incremented by 12
-            setPageLoadMax(pageLoadMax + PAGE_INCREMENT);
-        } else {
-            setPageLoadMax(props.genPokemonList.length + 1);
-            setCanLoadMore(false);
-        }
-    } 
-    
 
     /**
      * For the amount of pokemons loaded, fetch the data from the API where the pokemon name matches the name from the gen pokemon list
@@ -100,7 +107,7 @@ function PokemonApp(props) {
         )).then(data => {
             setPokemon(data);
         })
-        // add some error handling
+        // add some error handling TO DO
     }, [pageLoadMax, FIRST_POKEMON, props.genPokemonList]);
 
 
@@ -108,7 +115,8 @@ function PokemonApp(props) {
         <div className="pokemon-app">
 
             {pokemon && 
-                <div className="page-container" onScroll={() => {handleScroll()}}>
+            
+                <div className="page-container">
                     <Route path="/" exact component={() => 
                         <PokedexPage loadedPokemonList={pokemon} totalPokemon={props.genPokemonList.length} maxParty={MAX_PARTY} updateParty={updateParty} 
                         partyList={partyList} isInParty={isInParty} updateErrorMessage={props.updateErrorMessage} />} 
@@ -123,6 +131,8 @@ function PokemonApp(props) {
                         <PartyPage maxParty={MAX_PARTY} partyList={partyList} updateParty={updateParty}/>}
                     />
                 </div>
+
+                
             }
 
             {canLoadMore &&

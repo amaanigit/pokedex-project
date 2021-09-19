@@ -10,18 +10,19 @@ function PokedexPage(props) {
       <PageTitle text="Choose your team"/>
       <PageButton link="/party" text="party"/>
 
-      {/* make these dynamic */}
-      <ItemsTotal currentItems={props.loadedPokemonList.length} totalItems={props.totalPokemon}/>
+      
 
       <CardGrid>
-      {props.loadedPokemonList.map((item) => {
-          return (
-              <PokedexCard key={item.id} name={item.name} id={item.id} sprite={item.sprites.front_default} types={item.types} 
-              updateParty={props.updateParty} partyCount={props.partyList.length} cardInParty={props.isInParty(item.id)} 
-              updateErrorMessage={(message) => props.updateErrorMessage(message)} maxParty={props.maxParty}/>
-          );
-      })}
+        {props.loadedPokemonList.map((item) => {
+            return (
+                <PokedexCard key={item.id} name={item.name} id={item.id} sprite={item.sprites.front_default} types={item.types} 
+                updateParty={props.updateParty} partyCount={props.partyList.length} cardInParty={props.isInParty(item.id)}
+                updateErrorMessage={(message) => props.updateErrorMessage(message)} maxParty={props.maxParty}/>
+            );
+        })}
       </CardGrid>
+
+      <ItemsTotal currentItems={props.loadedPokemonList.length} totalItems={props.totalPokemon}/>
 
       <ul>
           <li>PARTY LIST</li>

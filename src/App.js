@@ -129,7 +129,6 @@ function App() {
    * Fetch all names, and ID's of gen 1 pokemon. Run once on load.
    */
   useEffect(() => {
-    console.log('use effect ran');
     const apiUrl = 'https://pokeapi.co/api/v2/generation/' + GENERATION;
 
     fetch(apiUrl)
