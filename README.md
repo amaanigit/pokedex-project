@@ -1,5 +1,5 @@
-# jm-pokedex
-The dev task for round 3 of the JM interview.
+# pokedex-project
+A pokedex project built using React.
 
 # Getting Started with Create React App
 
